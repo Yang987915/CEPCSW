@@ -4,7 +4,10 @@
 #include <algorithm>
 #include <map>
 
-#include "Objects/CaloBar.h"
+#include "Objects/CaloUnit.h"
+#include "Objects/Calo1DCluster.h"
+#include "Objects/Calo2DCluster.h"
+#include "Objects/Calo3DCluster.h"
 #include "Objects/CaloBlock.h"
 #include "Objects/CaloTower.h"
 #include "Objects/CaloBarShower.h"
@@ -53,19 +56,31 @@ public:
   std::map<std::string, std::vector<edm4hep::MCRecoTrackerAssociation> > collectionMap_TrkRel;
 
   //Self used objects
+  //General objects for all PFA
   std::vector<PandoraPlus::Track*>       TrackCol;
+  std::map<std::string, std::vector<PandoraPlus::CaloHit*>> map_CaloHit;
+  std::map<std::string, std::vector<PandoraPlus::CaloCluster*>> map_CaloCluster;
 
-  std::vector<PandoraPlus::CaloBar*>     BarCol;  
+
+  std::vector<PandoraPlus::CaloUnit*>       BarCol; 
+  std::vector<PandoraPlus::Calo1DCluster*>  Cluster1DCol; 
+  std::vector<PandoraPlus::Calo2DCluster*>  Cluster2DCol;  
+  std::vector<PandoraPlus::Calo3DCluster*>  Cluster3DCol;
+
   std::vector<PandoraPlus::CaloBlock*>   BlockCol; 
   std::vector<PandoraPlus::CaloTower*>   TowerCol;
   std::vector<PandoraPlus::TransShower*> TransShowerCol;
-  std::vector<PandoraPlus::CaloCluster*> ClusterCol;
+  //std::vector<PandoraPlus::CaloCluster*> ClusterCol;
 
 
-  //Backup collections, for memory clean. 
+  //Backup collections, for memory clean. TODO: replace with object managers. 
   std::vector<PandoraPlus::Track*>          bk_TrackCol;
 
-  std::vector<PandoraPlus::CaloBar*>        bk_BarCol;
+  std::vector<PandoraPlus::CaloHit*>        bk_HitCol;
+  std::vector<PandoraPlus::CaloUnit*>        bk_BarCol;
+  std::vector<PandoraPlus::Calo1DCluster*>     bk_Cluster1DCol; 
+  std::vector<PandoraPlus::Calo2DCluster*>     bk_Cluster2DCol;  
+  std::vector<PandoraPlus::Calo3DCluster*>     bk_Cluster3DCol;
   std::vector<PandoraPlus::CaloBlock*>      bk_BlockCol;
   std::vector<PandoraPlus::CaloTower*>      bk_TowerCol;
   std::vector<PandoraPlus::CaloBarCluster*> bk_BarClusCol;

@@ -1,6 +1,9 @@
 # Modules
 gaudi_add_library(CRDEcalRecLib
-                  SOURCES src/Objects/CaloBar.cc
+                  SOURCES src/Objects/CaloUnit.cc
+                          src/Objects/Calo1DCluster.cc
+                          src/Objects/Calo2DCluster.cc
+                          src/Objects/Calo3DCluster.cc
                           src/Objects/CaloBarShower.cc
                           src/Objects/CaloBarCluster.cc
                           src/Objects/CaloBlock.cc
@@ -30,6 +33,7 @@ gaudi_add_module(CRDEcalRec
                          src/Tools/TrackCreator.cpp
                          src/Tools/CaloHitsCreator.cpp
                          src/Tools/OutputCreator.cpp
+                         src/Tools/TrackFitInEcal.cpp
                          src/Algorithm/ExampleAlg.cpp
                          src/Algorithm/TrackExtrapolatingAlg.cpp
                          src/Algorithm/GlobalClusteringAlg.cpp
@@ -37,6 +41,7 @@ gaudi_add_module(CRDEcalRec
                          src/Algorithm/HoughClusteringAlg.cpp
                          src/Algorithm/EnergySplittingAlg.cpp
                          src/Algorithm/EnergyTimeMatchingAlg.cpp
+                         src/Algorithm/ConeClusteringAlg.cpp
                  LINK    CRDEcalRecLib
 )
 target_include_directories(CRDEcalRec PUBLIC

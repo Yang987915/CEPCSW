@@ -2,6 +2,8 @@
 #define TRACK_CREATOR_H
 
 #include "PandoraPlusDataCol.h"
+#include "Tools/Algorithm.h"
+#include "Algorithm/TrackExtrapolatingAlg.h"
 #include "TVector3.h"
 
 namespace PandoraPlus{
@@ -9,18 +11,9 @@ namespace PandoraPlus{
 
   public: 
 
-    class Settings{
-    public:
-      Settings(){};
-   
-      float m_BField; 
-      std::vector<std::string>  m_trackCollections; 
-   
-    };
-    
     //initialize a CaloHitCreator
     TrackCreator( const Settings& m_settings );
-    ~TrackCreator() {};
+    ~TrackCreator() { delete m_TrkExtraAlg; };
    
     StatusCode CreateTracks( PandoraPlusDataCol& m_DataCol, 
                              std::vector<DataHandle<edm4hep::TrackCollection>*>& r_TrackCols ); 
@@ -29,8 +22,11 @@ namespace PandoraPlus{
     StatusCode Reset(){};
 
   private: 
-    const Settings  settings; 
-  
+    const PandoraPlus::Settings  settings; 
+    PandoraPlus::Algorithm*      m_TrkExtraAlg; 
+    PandoraPlus::Settings        m_TrkExtraSettings;  
+
+
   };
 };
 #endif
